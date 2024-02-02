@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  backend_app:
+    container_name: backend_app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html/backend
+    ports:
+      - 8000:80
+  db:
+    container_name: db
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: phpbashmock
+      MARIADB_DATABASE: phpbashmock
+      MARIADB_USER: phpbashmock
+      MARIADB_PASSWORD: phpbashmock
+    volumes:
+      - ./backend:/var/www/html/backend
+    ports:
+      - '3306:3306'
