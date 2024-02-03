@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "mock-reset": "node ./dist/index.js",
-    "mock-reset-compile": "tsc"
+    "mock-reset-compile": "tsc -w"
   },
   "keywords": [],
   "author": "",
