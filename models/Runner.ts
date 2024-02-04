@@ -36,7 +36,7 @@ abstract class Runner {
 
     /**
      * @method setCommandType
-     * @param commandType 
+     * @param config: RunnerConfig 
      * @description Set the command type
      * @returns void
      */
@@ -57,7 +57,7 @@ abstract class Runner {
 
     /**
      * @method setCommandType
-     * @param commandType 
+     * @param config: RunnerConfig 
      * @description Set the command type
      * @returns void
      */
@@ -78,7 +78,7 @@ abstract class Runner {
 
     /**
      * @method setComandValue
-     * @param commandValue 
+     * @param config: RunnerConfig 
      * @description Set the command commandValue
      * @returns void
      */
@@ -99,7 +99,7 @@ abstract class Runner {
 
         /**
      * @method setWorkSpace
-     * @param commandValue 
+     * @param config: RunnerConfig 
      * @description Set the command commandValue
      * @returns void
      */
