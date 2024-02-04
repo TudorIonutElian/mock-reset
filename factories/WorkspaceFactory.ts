@@ -17,7 +17,7 @@ class WorkspaceFactory extends Factory {
     * @returns void   
     */
     public static buildWorkspace:Function = (worskpace: string) : void => {
-        const workspacePath = `${path.join('workspaces/', worskpace, '/')}`;
+        const workspacePath = `${path.join('workspaces/', worskpace, '/migrations/')}`;
         try {
             if (!fs.existsSync(`${workspacePath}`)) {
                 fs.mkdirSync(`${workspacePath}`);

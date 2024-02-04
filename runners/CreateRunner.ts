@@ -1,7 +1,7 @@
 import Runner from '../models/Runner';
 import AllowedCommandTypes from '../config/AllowedCommandTypes';
 import Workspace from '../models/Workspace';
-import MigrationFactory from '../models/MigrationFactory';
+import MigrationFactory from '../factories/MigrationFactory';
 
 import * as fs from 'fs';
 
@@ -63,10 +63,15 @@ class CreateRunner extends Runner {
         }
     }
 
+    /**
+     * @method createMigration
+     * @description Create a new migration
+     * @returns void
+     */
     private createMigration() : void {
         const migrationTableName = this.getMigrationTableNameOrNull();
 
-        fs.writeFile('migrations/' + migrationTableName + '.ts', this.getMigrationFileTemplate(migrationTableName), (error) => {
+        fs.writeFile('workspaces/' + this.getWorkspace() + '/migrations/' + migrationTableName + '.ts', this.getMigrationFileTemplate(migrationTableName), (error) => {
             console.log(error);
         });
     }

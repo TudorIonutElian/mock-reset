@@ -12,6 +12,7 @@ abstract class Runner {
         this.setCommandType(config);
         this.setCommandName(config);
         this.setComandValue(config);
+        this.setWorkSpace(config);
         this.setAllowedCommandTypes();
 
         return this;
