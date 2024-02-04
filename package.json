@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "mock-reset": "node ./dist/index.js",
+    "create-workspace-development": "node ./dist/index.js create workspace development",
+    "create-workspace-testing": "node ./dist/index.js create workspace testing",
+    "create-workspace-staging": "node ./dist/index.js create workspace staging",
     "mock-reset-compile": "tsc -w"
   },
   "keywords": [],
