@@ -94,6 +94,21 @@ abstract class Runner {
         return this.commandValue;
     }
 
+    /**
+     * @method getMigrationTableName
+     * @description get the migration table name
+     * @param letterPosition 
+     * @returns string | null
+     */
+    protected getMigrationTableNameOrNull(): string | null
+    {
+        if (this.getCommandName() === "migration") {
+            return this.getCommandValue().charAt(0).toUpperCase() + this.getCommandValue().slice(1);
+        }
+        
+        return null;
+    }
+
     /*
     * @method executeCommand
     * @description Execute the command

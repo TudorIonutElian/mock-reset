@@ -2,6 +2,8 @@ import Runner from '../models/Runner';
 import AllowedCommandTypes from '../config/AllowedCommandTypes';
 import Workspace from '../models/Workspace';
 
+import * as fs from 'fs';
+
 class CreateRunner extends Runner {
 
     /**
@@ -26,6 +28,8 @@ class CreateRunner extends Runner {
                     case 'workspace':
                         this.createWorkspace();
                         break;
+                    case 'migration':
+                        this.createMigration()   
                     default:
                         break;
                 }
@@ -37,12 +41,37 @@ class CreateRunner extends Runner {
                         commandName: this.getCommandName(),
                         commandValue: this.getCommandValue() || '',
                         error: 'Invalid command value'
-                    }
+                    },
+                    null,
+                    2
                 ));
             }
         } else {
-            console.log(`Invalid commandName passed on executeCommand(): ${this.getCommandName()}`);
+            console.log(JSON.stringify(
+                {
+                    className: this.constructor.name,
+                    methodName: 'executeCommand',
+                    commandName: '',
+                    commandValue: '',
+                    error: 'Invalid command name'
+                },
+                null, 
+                2
+            ));
         }
+    }
+
+    private createMigration() : void {
+        const migrationTableName = this.getMigrationTableNameOrNull();
+
+        fs.writeFile('migrations/' + migrationTableName + '.ts', this.getMigrationFileTemplate(), (error) => {
+            console.log(error);
+        });
+    }
+
+
+    private getMigrationFileTemplate() : string {
+        return `import Migration from '../models/Migration';\n\nexport default class ${this.getMigrationTableNameOrNull()} extends Migration {\n\n  public up() : void {\n\n    }\n\n  public down() : void {\n\n    }\n\n}`;
     }
 
     /**
@@ -51,7 +80,6 @@ class CreateRunner extends Runner {
      * @returns void
      */
     private createWorkspace() : void {
-        // Usage example
         const workspace = new Workspace(
             this.getCommandValue()
         );

@@ -9,15 +9,15 @@ import AllowedCommandTypes from "../types/AllowedCommandTypes";
  */
 const allowedCommandTypes: AllowedCommandTypes = {
     create: {
-        names: ['workspace'],
+        names: ['workspace', 'migration'],
         conditions: []
     },
     apply: {
-        names: ['workspace'],
+        names: ['workspace', 'migration'],
         conditions: []
     },
     remove: {
-        names: ['workspace'],
+        names: ['workspace', 'migration'],
         conditions: []
     }
 };
