@@ -1,5 +1,6 @@
 import Factory from "./Factory";
 import * as fs from "fs";
+import * as path from "path";
 
 class WorkspaceFactory extends Factory {
     public name: string = "WorkspaceFactory";
@@ -16,9 +17,10 @@ class WorkspaceFactory extends Factory {
     * @returns void   
     */
     public static buildWorkspace:Function = (worskpace: string) : void => {
+        const workspacePath = `${path.join('workspaces/', worskpace, '/')}`;
         try {
-            if (!fs.existsSync(`workspaces/${worskpace}`)) {
-                fs.mkdirSync(`workspaces/${worskpace}`);
+            if (!fs.existsSync(`${workspacePath}`)) {
+                fs.mkdirSync(`${workspacePath}`);
               }
         } catch (error) {
             console.log(`Error while trying to generate new worskspace: ${error}`);
