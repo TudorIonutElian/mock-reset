@@ -1,4 +1,5 @@
 import * as mysql2 from 'mysql2';
+import WorkspaceFactory from '../factories/WorkspaceFactory';
 
 class Workspace {
     private connection: mysql2.Connection;
@@ -131,6 +132,20 @@ class Workspace {
                 }
             });
         });
+    }
+
+    /**
+     * @method build
+     * @description Build the workspace
+     * @param workspace
+     * @returns void   
+     */
+    public build(workspace: string) : void {
+        try {
+            WorkspaceFactory.buildWorkspace(workspace);
+        } catch (error) {
+            console.log(`Error while trying to generate new worskspace: ${error}`);
+        }
     }
 }
 

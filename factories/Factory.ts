@@ -1,9 +1,9 @@
 abstract class Factory {
     public abstract name: string;
 
-    public abstract build:Function;
+    public static build:Function;
 
-    public abstract displayDetails:Function;
+    public static displayDetails:Function;
 }
 
 

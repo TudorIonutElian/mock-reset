@@ -4,6 +4,7 @@ import Workspace from '../models/Workspace';
 import MigrationFactory from '../models/MigrationFactory';
 
 import * as fs from 'fs';
+import WorkspaceFactory from '../factories/WorkspaceFactory';
 
 class CreateRunner extends Runner {
 
@@ -89,6 +90,7 @@ class CreateRunner extends Runner {
         const workspace = new Workspace(
             this.getCommandValue()
         );
+        workspace.build(this.getCommandValue());
         workspace.connect()
             .then(() => workspace.createDatabase())
             .then(() => {
