@@ -1,14 +1,17 @@
+import RunnerConfig from "../types/RunnerConfig";
+
 abstract class Runner {
     private commandType: string;
     private commandName: string;
     private commandValue: string;
+    private commandWorkspace: string;
     protected allowedCommandTypes: Object;
 
-    public constructor(commandType: string, commandName:string, commandValue: string) 
+    public constructor(config: RunnerConfig) 
     {
-        this.setCommandType(commandType)
-        this.setCommandName(commandName);
-        this.setComandValue(commandValue);
+        this.setCommandType(config);
+        this.setCommandName(config);
+        this.setComandValue(config);
         this.setAllowedCommandTypes();
 
         return this;
@@ -37,9 +40,9 @@ abstract class Runner {
      * @description Set the command type
      * @returns void
      */
-    public setCommandType(commandType: string) :void 
+    public setCommandType(config: RunnerConfig) :void 
     {
-        this.commandType = commandType;
+        this.commandType = config.commandType;
     }
 
     /**
@@ -58,9 +61,9 @@ abstract class Runner {
      * @description Set the command type
      * @returns void
      */
-    public setCommandName(commandName: string) :void 
+    public setCommandName(config: RunnerConfig) :void 
     {
-        this.commandName = commandName;
+        this.commandName = config.commandName;
     }
 
     /**
@@ -79,9 +82,30 @@ abstract class Runner {
      * @description Set the command commandValue
      * @returns void
      */
-    public setComandValue(commandValue: string) :void 
+    public setComandValue(config: RunnerConfig) :void 
     {
-        this.commandValue = commandValue;
+        this.commandValue = config.commandValue;
+    }
+
+    /**
+     * @method getCommandValue
+     * @description Get the command atrributes
+     * @returns string
+     */
+    public getWorkspace() : string
+    {
+        return this.commandWorkspace;
+    }
+
+        /**
+     * @method setWorkSpace
+     * @param commandValue 
+     * @description Set the command commandValue
+     * @returns void
+     */
+    public setWorkSpace(config: RunnerConfig) :void 
+    {
+        this.commandWorkspace = config.commandWorkspace;
     }
 
     /**

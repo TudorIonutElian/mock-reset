@@ -4,9 +4,9 @@ import Workspace from '../models/Workspace';
 import MigrationFactory from '../models/MigrationFactory';
 
 import * as fs from 'fs';
-import WorkspaceFactory from '../factories/WorkspaceFactory';
 
 class CreateRunner extends Runner {
+    private workspace: string;
 
     /**
      * @method setAllowedCommandTypes
