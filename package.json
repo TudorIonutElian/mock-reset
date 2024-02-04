@@ -1,8 +1,8 @@
 {
-  "name": "php-bash-mockup",
+  "name": "mock-reset",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "mock-reset": "node ./dist/index.js",
     "mock-reset-compile": "tsc -w"
