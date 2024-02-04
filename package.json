@@ -12,6 +12,12 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.16",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "cli-color": "^2.0.3",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.1"
   }
 }

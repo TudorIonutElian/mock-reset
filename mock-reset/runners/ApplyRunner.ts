@@ -1,6 +1,17 @@
 import Runner from '../models/Runner';
+import AllowedCommandTypes from '../config/AllowedCommandTypes';
 
 class ApplyRunner extends Runner {
+    
+    /**
+     * @method setAllowedCommandTypes
+     * @description Set the allowed command types
+     * @returns void
+     */
+    public setAllowedCommandTypes(): void 
+    {
+        this.allowedCommandTypes = AllowedCommandTypes['apply'];
+    }
   
     /**
      * @method executeCommand
@@ -9,8 +20,8 @@ class ApplyRunner extends Runner {
      */
     public executeCommand() : void {
         switch (this.getCommandName()) {
-            case 'environment':
-                this.applyEnvironment();
+            case 'workspace':
+                this.applyWorkspace();
                 break;
             default:
                 console.log(`Invalid commandType passed on executeCommand(): ${this.getCommandName()}`);
@@ -20,12 +31,12 @@ class ApplyRunner extends Runner {
     }
 
     /**
-     * @method applyEnvironment
-     * @description Apply a new environment
+     * @method applyWorkspace
+     * @description Apply a new workspace
      * @returns void
      */
-    private applyEnvironment() : void {
-        console.log(`Apply a new environment with the value: ${this.getCommandValue()}`);
+    private applyWorkspace() : void {
+        console.log(`Apply a new workspace with the value: ${this.getCommandValue()}`);
     }
 }
 

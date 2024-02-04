@@ -1,4 +1,4 @@
-type workspace = {
+type Workspace = {
     name:String,
     scriptDirectory:String,
     databaseEndpoint:String,
@@ -7,4 +7,4 @@ type workspace = {
     status:boolean
 };
 
-export default workspace;
+export default Workspace;

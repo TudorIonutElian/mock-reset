@@ -1,6 +1,18 @@
 import Runner from '../models/Runner';
+import AllowedCommandTypes from '../config/AllowedCommandTypes';
+import Workspace from '../models/Workspace';
 
 class CreateRunner extends Runner {
+
+    /**
+     * @method setAllowedCommandTypes
+     * @description Set the allowed command types
+     * @returns void
+     */
+    public setAllowedCommandTypes(): void 
+    {
+        this.allowedCommandTypes = AllowedCommandTypes['create'];
+    }
   
     /**
      * @method executeCommand
@@ -8,24 +20,52 @@ class CreateRunner extends Runner {
      * @returns void
      */
     public executeCommand() : void {
-        switch (this.getCommandName()) {
-            case 'environment':
-                this.createEnvironment();
-                break;
-            default:
-                console.log(`Invalid commandType passed on executeCommand(): ${this.getCommandName()}`);
-                break;
+        if (this.isValidCommandName()) {
+            if (this.isValidCommandValue()) {
+                switch (this.getCommandName()) {
+                    case 'workspace':
+                        this.createWorkspace();
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                console.log(JSON.stringify(
+                    {
+                        className: this.constructor.name,
+                        methodName: 'executeCommand',
+                        commandName: this.getCommandName(),
+                        commandValue: this.getCommandValue() || '',
+                        error: 'Invalid command value'
+                    }
+                ));
+            }
+        } else {
+            console.log(`Invalid commandName passed on executeCommand(): ${this.getCommandName()}`);
         }
-        
     }
 
     /**
-     * @method createEnvironment
-     * @description Create a new environment
+     * @method createWorkspace
+     * @description Create a new workspace
      * @returns void
      */
-    private createEnvironment() : void {
-        console.log(`Creating a new environment with the value: ${this.getCommandValue()}`);
+    private createWorkspace() : void {
+        // Usage example
+        const workspace = new Workspace(
+            this.getCommandValue()
+        );
+        workspace.connect()
+            .then(() => workspace.createDatabase())
+            .then(() => {
+                workspace.createMigrationsTable();
+                console.log('Database created successfully!');
+                return workspace.disconnect();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                workspace.disconnect();
+            });
     }
 }
 
