@@ -61,6 +61,7 @@ class Workspace {
                     if (error) {
                         reject(error);
                     } else {
+
                         resolve();
                     }
                 });
@@ -166,7 +167,21 @@ class Workspace {
      */
     public build(workspace: string) : void {
         try {
-            WorkspaceFactory.buildWorkspace(workspace);
+            WorkspaceFactory.createWorkSpace(workspace);
+        } catch (error) {
+            console.log(`Error while trying to generate new worskspace: ${error}`);
+        }
+    }
+
+    /**
+     * @method remove
+     * @description remove the workspace
+     * @param workspace
+     * @returns void   
+     */
+    public remove(workspace: string) : void {
+        try {
+            WorkspaceFactory.removeWorkSpace(workspace);
         } catch (error) {
             console.log(`Error while trying to generate new worskspace: ${error}`);
         }

@@ -45,6 +45,7 @@ class RemoveRunner extends Runner {
             );
             workspace.removeWorkspace(this.getCommandValue());
             workspace.disconnect();
+            workspace.remove(this.getCommandValue());
         } else {
             console.log(`Invalid workspace name: ${workspaceName}`);
         }
