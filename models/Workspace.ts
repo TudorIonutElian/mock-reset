@@ -46,6 +46,30 @@ class Workspace {
         }
     }
 
+
+      /**
+     * @method removeWorkspace
+     * @description Remove the workspace
+     * @returns Promise<void>
+     */
+      public removeWorkspace(databaseName: string) : Promise<void> {
+        try {
+            this.connect();
+
+            return new Promise((resolve, reject) => {
+                this.connection.query(`DROP DATABASE IF EXISTS ${databaseName}`, (error) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve();
+                    }
+                });
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     /**
      * @method createMigrationsTable
      * @description Create the migrations table

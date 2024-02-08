@@ -1,5 +1,6 @@
 import Runner from '../models/Runner';
 import AllowedCommandTypes from '../config/AllowedCommandTypes';
+import Workspace from '../models/Workspace';
 
 class RemoveRunner extends Runner {
 
@@ -10,7 +11,7 @@ class RemoveRunner extends Runner {
      */
     public setAllowedCommandTypes(): void 
     {
-        this.allowedCommandTypes = this.allowedCommandTypes['remove'];
+        this.allowedCommandTypes = AllowedCommandTypes['remove'];
     }
   
     /**
@@ -36,7 +37,18 @@ class RemoveRunner extends Runner {
      * @returns void
      */
     private removeWorkspace() : void {
-        console.log(`Removing a new workspace with the value: ${this.getCommandValue()}`);
+        const workspaceName = this.getCommandValue();
+
+        if (workspaceName) {
+            const workspace = new Workspace(
+                this.getCommandValue()
+            );
+            workspace.removeWorkspace(this.getCommandValue());
+            workspace.disconnect();
+        } else {
+            console.log(`Invalid workspace name: ${workspaceName}`);
+        }
+        
     }
 }
 
