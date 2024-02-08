@@ -46,6 +46,31 @@ class Workspace {
         }
     }
 
+
+      /**
+     * @method removeWorkspace
+     * @description Remove the workspace
+     * @returns Promise<void>
+     */
+      public removeWorkspace(databaseName: string) : Promise<void> {
+        try {
+            this.connect();
+
+            return new Promise((resolve, reject) => {
+                this.connection.query(`DROP DATABASE IF EXISTS ${databaseName}`, (error) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+
+                        resolve();
+                    }
+                });
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+
     /**
      * @method createMigrationsTable
      * @description Create the migrations table
@@ -142,7 +167,21 @@ class Workspace {
      */
     public build(workspace: string) : void {
         try {
-            WorkspaceFactory.buildWorkspace(workspace);
+            WorkspaceFactory.createWorkSpace(workspace);
+        } catch (error) {
+            console.log(`Error while trying to generate new worskspace: ${error}`);
+        }
+    }
+
+    /**
+     * @method remove
+     * @description remove the workspace
+     * @param workspace
+     * @returns void   
+     */
+    public remove(workspace: string) : void {
+        try {
+            WorkspaceFactory.removeWorkSpace(workspace);
         } catch (error) {
             console.log(`Error while trying to generate new worskspace: ${error}`);
         }

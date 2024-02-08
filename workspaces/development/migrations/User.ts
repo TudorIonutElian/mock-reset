@@ -4,10 +4,10 @@ export default class User extends Migration {
 
   public up() : void {
 
-    }
+  }
 
   public down() : void {
 
-    }
+  }
 
 }
